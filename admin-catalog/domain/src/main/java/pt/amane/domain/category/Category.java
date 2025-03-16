@@ -3,6 +3,7 @@ package pt.amane.domain.category;
 import java.time.Instant;
 import java.util.Objects;
 import pt.amane.domain.AggregateRoot;
+import pt.amane.domain.validaion.ValidationHandler;
 
 public class Category extends AggregateRoot<CategoryID> {
 
@@ -13,7 +14,7 @@ public class Category extends AggregateRoot<CategoryID> {
   private Instant updatedAt;
   private Instant deletedAt;
 
-  public Category(
+  private Category(
       final CategoryID categoryID,
       final String name,
       final String description,
@@ -35,6 +36,15 @@ public class Category extends AggregateRoot<CategoryID> {
     final var now = Instant.now();
     final var aDeletedAt = isActive ? null : now;
     return new Category(anId, aName, aDescription, isActive, now, now, aDeletedAt);
+  }
+
+  @Override
+  public void validate(final ValidationHandler handler) {
+    new CategoryValidator(this, handler).validate();
+  }
+
+  public CategoryID getId() {
+    return id;
   }
 
   public String getName() {

@@ -1,15 +1,18 @@
 package pt.amane.domain;
 
 import java.util.Objects;
+import pt.amane.domain.validaion.ValidationHandler;
 
 public abstract class Entity<ID> extends Identifier {
 
-  private final ID id;
+  protected final ID id;
 
   protected Entity(ID id) {
     Objects.requireNonNull(id, "'id' should not be null");
     this.id = id;
   }
+
+  public abstract void validate(ValidationHandler handler);
 
   public ID getId() {
     return id;
