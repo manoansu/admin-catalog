@@ -1,7 +1,9 @@
 package pt.amane.domain.category;
 
+import java.util.List;
 import java.util.Optional;
 import pt.amane.domain.pagination.Pagination;
+import pt.amane.domain.pagination.SearchQuery;
 
 public interface CategoryGateway {
 
@@ -13,6 +15,8 @@ public interface CategoryGateway {
 
   Category update(Category aCategory);
 
-  Pagination<Category> findAll(CategorySearchByQuaery aQuery);
+  Pagination<Category> findAll(SearchQuery aQuery);
+
+  List<CategoryID> existsByIds(Iterable<CategoryID> ids);
 
 }
