@@ -38,8 +38,8 @@ public class CategoryID extends Identifier {
   }
 
   @Override
-  public void getValue() {
-
+  public String getValue() {
+    return this.value;
   }
 
   @Override

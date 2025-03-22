@@ -38,9 +38,69 @@ public class Category extends AggregateRoot<CategoryID> {
     return new Category(anId, aName, aDescription, isActive, now, now, aDeletedAt);
   }
 
+  public static Category with(
+      final CategoryID anId,
+      final String name,
+      final String description,
+      final boolean active,
+      final Instant createdAt,
+      final Instant updatedAt,
+      final Instant deletedAt
+  ) {
+    return new Category(
+        anId,
+        name,
+        description,
+        active,
+        createdAt,
+        updatedAt,
+        deletedAt
+    );
+  }
+
+  public static Category with(final Category aCategory) {
+    return with(
+        aCategory.getId(),
+        aCategory.name,
+        aCategory.description,
+        aCategory.isActive(),
+        aCategory.createdAt,
+        aCategory.updatedAt,
+        aCategory.deletedAt
+    );
+  }
+
   @Override
   public void validate(final ValidationHandler handler) {
     new CategoryValidator(this, handler).validate();
+  }
+
+  public Category activate() {
+    this.deletedAt = null;
+    this.active = true;
+    this.updatedAt = Instant.now();
+    return this;
+  }
+
+  public Category deactivate() {
+    if (getDeletedAt() == null) {
+      this.deletedAt = Instant.now();
+    }
+    this.active = false;
+    this.updatedAt = Instant.now();
+    return this;
+  }
+
+  public Category update(final String aName, final String aDescription, final boolean isActivate) {
+    if (isActivate){
+      activate();
+    }else {
+      deactivate();
+    }
+    this.name = aName;
+    this.description = aDescription;
+    this.updatedAt = Instant.now();
+    return this;
   }
 
   public CategoryID getId() {
@@ -72,8 +132,8 @@ public class Category extends AggregateRoot<CategoryID> {
   }
 
   @Override
-  public void getValue() {
-
+  public String getValue() {
+    return "";
   }
 
 }

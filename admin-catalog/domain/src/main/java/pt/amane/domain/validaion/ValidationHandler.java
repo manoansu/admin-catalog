@@ -20,6 +20,14 @@ public interface ValidationHandler {
     return getErrors() != null && !getErrors().isEmpty();
   }
 
+  default Error firstError() {
+    if (getErrors() != null && !getErrors().isEmpty()) {
+      return getErrors().get(0);
+    }else {
+      return null;
+    }
+  }
+
   /**
    * Posibilidade de lançar um metodo como lambda functiom que lança exception.
    */
