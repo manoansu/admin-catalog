@@ -38,16 +38,22 @@ dependencies {
     implementation('mysql:mysql-connector-java:8.0.27')
     implementation('org.springframework.boot:spring-boot-starter-undertow')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-//    implementation('org.springframework.boot:spring-boot-starter-amqp')
+    implementation('org.springframework.boot:spring-boot-starter-amqp')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.amqp:spring-rabbit-test:2.4.8')
+
     testImplementation('org.flywaydb:flyway-core')
     testImplementation('org.flywaydb:flyway-mysql')
 
     testRuntimeOnly('com.h2database:h2')
 
 //    testImplementation platform('org.junit:junit-bom:5.10.0')
-//    testImplementation 'org.junit.jupiter:junit-jupiter'
+//    testImplementation('org.junit.jupiter:junit-jupiter')
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+//    testImplementation('org.mockito:mockito-junit-jupiter:5.7.0')
+
 }
 
 flyway {
