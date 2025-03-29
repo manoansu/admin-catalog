@@ -1,9 +1,5 @@
 package pt.amane.infrastructure.category;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -64,7 +60,7 @@ public class CategoryMySQLGateway implements CategoryGateway {
         Sort.by(Direction.fromString(aQuery.direction()), aQuery.sort())
     );
 
-    // Busca dinamica pelo cri aaaaaaterio terms (name ou description)
+    // Busca dinamica pelo criaterio terms (name ou description)
     final var specifications = Optional.ofNullable(aQuery.terms())
         .filter(str -> !str.isBlank())
 //        .map(this::assembleSpecification)

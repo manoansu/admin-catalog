@@ -5,16 +5,17 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles("test-integration")
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
+@ActiveProfiles("test-integration")
 @ComponentScan(
     basePackages = "pt.amane",
     useDefaultFilters = false,
@@ -24,5 +25,6 @@ import org.springframework.test.context.ActiveProfiles;
 )
 @DataJpaTest
 @ExtendWith(MySQLCleanUpExtension.class)
+@Tag("integrationTest")
 public @interface MySQLGatewayTest {
 }

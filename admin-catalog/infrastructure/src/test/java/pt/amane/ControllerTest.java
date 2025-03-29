@@ -6,17 +6,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 import org.springframework.test.context.ActiveProfiles;
-import pt.amane.infrastructure.configuration.WebServerConfig;
+import pt.amane.infrastructure.configuration.ObjectMapperConfig;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @ActiveProfiles("test-integration")
-@SpringBootTest(classes = WebServerConfig.class)
-@ExtendWith(MySQLCleanUpExtension.class)
+@WebMvcTest
+@Import(ObjectMapperConfig.class)
 @Tag("integrationTest")
-public @interface IntegrationTest {
+public @interface ControllerTest {
+
+  @AliasFor(annotation = WebMvcTest.class, attribute = "controllers")
+  Class<?>[] controllers() default {};
 }
