@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import pt.amane.infrastructure.configuration.WebServerConfig;
 
@@ -15,7 +16,7 @@ import pt.amane.infrastructure.configuration.WebServerConfig;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @ActiveProfiles("test-integration")
-@SpringBootTest(classes = WebServerConfig.class)
+@SpringBootTest(classes = WebServerConfig.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @ExtendWith(MySQLCleanUpExtension.class)
 @Tag("integrationTest")
 public @interface IntegrationTest {

@@ -10,7 +10,7 @@ public class Notification implements ValidationHandler {
 
   private final List<Error> errors;
 
-  public Notification(final List<Error> errors) {
+  private Notification(final List<Error> errors) {
     this.errors = errors;
   }
 
@@ -18,12 +18,12 @@ public class Notification implements ValidationHandler {
     return new Notification(new ArrayList<>());
   }
 
-  public static Notification create(final Error anError) {
-    return new Notification(new ArrayList<>()).append(anError);
-  }
-
   public static Notification create(final Throwable t) {
     return create(new Error(t.getMessage()));
+  }
+
+  public static Notification create(final Error anError) {
+    return new Notification(new ArrayList<>()).append(anError);
   }
 
   @Override
@@ -33,31 +33,25 @@ public class Notification implements ValidationHandler {
   }
 
   @Override
-  public ValidationHandler append(final ValidationHandler anHandler) {
+  public Notification append(final ValidationHandler anHandler) {
     this.errors.addAll(anHandler.getErrors());
     return this;
   }
 
   @Override
-  public ValidationHandler append(final Validation aValidation) {
-
+  public <T> T validate(final Validation<T> aValidation) {
     try {
-      aValidation.validate();;
-    }catch (final DomainException ex) {
+      return aValidation.validate();
+    } catch (final DomainException ex) {
       this.errors.addAll(ex.getErrors());
-    }catch (final Throwable t) {
+    } catch (final Throwable t) {
       this.errors.add(new Error(t.getMessage()));
     }
-    return this;
+    return null;
   }
 
   @Override
   public List<Error> getErrors() {
     return this.errors;
-  }
-
-  @Override
-  public boolean hasError() {
-    return ValidationHandler.super.hasError();
   }
 }

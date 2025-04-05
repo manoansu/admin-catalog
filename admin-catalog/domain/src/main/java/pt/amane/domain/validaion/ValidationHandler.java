@@ -8,7 +8,7 @@ public interface ValidationHandler {
 
   ValidationHandler append(ValidationHandler anHandler);
 
-  ValidationHandler append(Validation aValidation);
+  <T> T validate(Validation<T> aValidation);
 
   List<Error> getErrors();
 
@@ -31,8 +31,8 @@ public interface ValidationHandler {
   /**
    * Posibilidade de lançar um metodo como lambda functiom que lança exception.
    */
-  public interface Validation {
-    void  validate();
+  interface Validation<T> {
+    T validate();
   }
 
 }
