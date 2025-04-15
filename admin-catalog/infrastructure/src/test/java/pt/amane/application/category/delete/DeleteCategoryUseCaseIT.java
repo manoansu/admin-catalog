@@ -39,9 +39,6 @@ public class DeleteCategoryUseCaseIT {
 
     Assertions.assertEquals(1, categoryRepository.count());
 
-    doNothing().when(categoryGateway)
-            .deleteById(eq(CategoryID.from(expectedId.getValue())));
-
     Assertions.assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
     Assertions.assertEquals(0, categoryRepository.count());

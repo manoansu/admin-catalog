@@ -1,8 +1,7 @@
 package pt.amane.infrastructure.configuration.usecase;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Objects;
 import pt.amane.application.genre.create.CreateGenreUseCase;
 import pt.amane.application.genre.create.DefaultCreateGenreUseCase;
 import pt.amane.application.genre.delete.DefaultDeleteGenreUseCase;
@@ -15,6 +14,8 @@ import pt.amane.application.genre.update.DefaultUpdateGenreUseCase;
 import pt.amane.application.genre.update.UpdateGenreUseCase;
 import pt.amane.domain.category.CategoryGateway;
 import pt.amane.domain.genre.GenreGateway;
+
+import java.util.Objects;
 
 @Configuration
 public class GenreUseCaseConfig {

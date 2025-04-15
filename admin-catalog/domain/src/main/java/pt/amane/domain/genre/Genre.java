@@ -104,12 +104,6 @@ public class Genre extends AggregateRoot<GenreID> {
     return this;
   }
 
-
-  @Override
-  public String getValue() {
-    return "";
-  }
-
   public String getName() {
     return name;
   }

@@ -130,10 +130,4 @@ public class Category extends AggregateRoot<CategoryID> {
   public Instant getDeletedAt() {
     return deletedAt;
   }
-
-  @Override
-  public String getValue() {
-    return "";
-  }
-
 }

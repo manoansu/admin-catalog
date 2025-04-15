@@ -1,6 +1,5 @@
 package pt.amane.infrastructure.configuration.usecase;
 
-import java.util.Objects;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pt.amane.application.category.create.CreateCategoryUseCase;
@@ -15,13 +14,15 @@ import pt.amane.application.category.update.DefaultUpdateCategoryUseCase;
 import pt.amane.application.category.update.UpdateCategoryUseCase;
 import pt.amane.domain.category.CategoryGateway;
 
+import java.util.Objects;
+
+
 @Configuration
 public class CategoryUseCaseConfig {
 
   private final CategoryGateway categoryGateway;
 
-
-  public CategoryUseCaseConfig(CategoryGateway categoryGateway) {
+  public CategoryUseCaseConfig(final CategoryGateway categoryGateway) {
     this.categoryGateway = Objects.requireNonNull(categoryGateway);
   }
 
@@ -49,5 +50,4 @@ public class CategoryUseCaseConfig {
   public DeleteCategoryUseCase deleteCategoryUseCase() {
     return new DefaultDeleteCategoryUseCase(categoryGateway);
   }
-
 }

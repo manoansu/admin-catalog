@@ -19,6 +19,8 @@ dependencies {
 
     testImplementation('org.mockito:mockito-junit-jupiter:5.16.0')
 
+//    testImplementation(project(path: ':domain', configuration: 'testClasses'))
+
 }
 
 test {

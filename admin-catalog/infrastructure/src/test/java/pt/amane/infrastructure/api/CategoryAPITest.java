@@ -48,7 +48,7 @@ import pt.amane.infrastructure.category.models.CreateCategoryRequest;
 import pt.amane.infrastructure.category.models.UpdateCategoryRequest;
 
 
-@ControllerTest(controllers = CategoryAPITest.class)
+@ControllerTest(controllers = CategoryAPI.class)
 @AutoConfigureMockMvc(addFilters = false)
 public class CategoryAPITest {
 
