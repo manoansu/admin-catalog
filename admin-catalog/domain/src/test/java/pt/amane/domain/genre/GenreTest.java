@@ -160,7 +160,7 @@ public class GenreTest extends UnitTest {
     }
 
     @Test
-    public void givenAValidActiveGenre_whenCallUpdateWithInactivate_shouldReceiveGenreUpdated() {
+    public void givenAValidActiveGenre_whenCallUpdateWithInactivate_shouldReceiveGenreUpdated() throws InterruptedException {
         final var expectedName = "Ação";
         final var expectedIsActive = false;
         final var expectedCategories = List.of(CategoryID.from("123"));
@@ -172,6 +172,9 @@ public class GenreTest extends UnitTest {
         Assertions.assertNull(actualGenre.getDeletedAt());
 
         final var actualCreatedAt = actualGenre.getCreatedAt();
+
+        // Avoid return false in test case
+        Thread.sleep(10);
         final var actualUpdatedAt = actualGenre.getUpdatedAt();
 
         actualGenre.update(expectedName, expectedIsActive, expectedCategories);
@@ -298,7 +301,7 @@ public class GenreTest extends UnitTest {
     }
 
     @Test
-    public void givenAValidGenreWithTwoCategories_whenCallRemoveCategory_shouldReceiveOK() {
+    public void givenAValidGenreWithTwoCategories_whenCallRemoveCategory_shouldReceiveOK() throws InterruptedException {
         final var seriesID = CategoryID.from("123");
         final var moviesID = CategoryID.from("456");
 
@@ -312,7 +315,9 @@ public class GenreTest extends UnitTest {
         Assertions.assertEquals(2, actualGenre.getCategories().size());
 
         final var actualCreatedAt = actualGenre.getCreatedAt();
-//        final var actualUpdatedAt = getGenreUpdatedAt(actualGenre);
+
+        // Avoid update to return fulse intestcase
+        Thread.sleep(10);
         final var actualUpdatedAt = actualGenre.getUpdatedAt();
 
 
@@ -356,7 +361,7 @@ public class GenreTest extends UnitTest {
     }
 
     @Test
-    public void givenAValidEmptyCategoriesGenre_whenCallAddCategories_shouldReceiveOK() {
+    public void givenAValidEmptyCategoriesGenre_whenCallAddCategories_shouldReceiveOK() throws InterruptedException {
         final var seriesID = CategoryID.from("123");
         final var moviesID = CategoryID.from("456");
 
@@ -364,6 +369,8 @@ public class GenreTest extends UnitTest {
         final var expectedIsActive = true;
         final var expectedCategories = List.of(seriesID, moviesID);
 
+        // Avoid update to return fulse intestcase
+        Thread.sleep(10);
         final var actualGenre = Genre.newGenre(expectedName, expectedIsActive);
 
         Assertions.assertEquals(0, actualGenre.getCategories().size());

@@ -97,10 +97,12 @@ public class CastMemberTest extends UnitTest {
     }
 
     @Test
-    public void givenAValidCastMember_whenCallUpdate_shouldReceiveUpdated() {
+    public void givenAValidCastMember_whenCallUpdate_shouldReceiveUpdated() throws InterruptedException {
         final var expectedName = "Vin Diesel";
         final var expectedType = CastMemberType.ACTOR;
 
+        // Avoid return false in test case
+        Thread.sleep(10);
         final var actualMember =
                 CastMember.newMember("vind", CastMemberType.DIRECTOR);
 

@@ -258,6 +258,11 @@ public class Video extends AggregateRoot<VideoID> {
         );
     }
 
+    /**
+     * Clone the video contructor..
+     * @param aVideo
+     * @return
+     */
     public static Video with(final Video aVideo) {
         return new Video(
                 aVideo.getId(),
@@ -282,6 +287,28 @@ public class Video extends AggregateRoot<VideoID> {
         );
     }
 
+    /**
+     * Overrid the constructor.
+     * @param anId
+     * @param aTitle
+     * @param aDescription
+     * @param aLaunchYear
+     * @param aDuration
+     * @param wasOpened
+     * @param wasPublished
+     * @param aRating
+     * @param aCreationDate
+     * @param aUpdateDate
+     * @param aBanner
+     * @param aThumb
+     * @param aThumbHalf
+     * @param aTrailer
+     * @param aVideo
+     * @param categories
+     * @param genres
+     * @param members
+     * @return
+     */
     public static Video with(
             final VideoID anId,
             final String aTitle,
