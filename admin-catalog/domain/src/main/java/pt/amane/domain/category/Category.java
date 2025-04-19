@@ -38,6 +38,17 @@ public class Category extends AggregateRoot<CategoryID> {
     return new Category(anId, aName, aDescription, isActive, now, now, aDeletedAt);
   }
 
+  /**
+   * Reference method..
+   * @param anId
+   * @param name
+   * @param description
+   * @param active
+   * @param createdAt
+   * @param updatedAt
+   * @param deletedAt
+   * @return
+   */
   public static Category with(
       final CategoryID anId,
       final String name,
@@ -58,6 +69,11 @@ public class Category extends AggregateRoot<CategoryID> {
     );
   }
 
+  /**
+   * Clone the Category constructor
+   * @param aCategory
+   * @return
+   */
   public static Category with(final Category aCategory) {
     return with(
         aCategory.getId(),
